@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="you_house">
+        <item>Ваша квартира</item>
+    </string-array>
+    <string-array name="text_language">
+        <item>Русский</item>
+        <item>Український</item>
+        <item>English</item>
+        <item>Tro-lo-lo</item>
+    </string-array>
+
+    <string-array name="arr_pech">
+        <item>Газовая плита</item>
+        <item>Газовая плита при отсутствии горячего водоснабжения</item>
+        <item>Газовая плита и водонагреватель</item>
+    </string-array>
+
+    <string-array name="text_theme">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+    </string-array>
+
+    <string-array name="text_country">
+        <item>Россия</item>
+        <item>Украина</item>
+        <item>Белорись</item>
+        <item>Мордор</item>
+        <item>Средиземье</item>
+        <item>Шир, Торба-на-Круче</item>
+    </string-array>
+
+    <string-array name="dayofweek">
+        <item>Ваш тариф</item>
+        <item>В городе</item>
+        <item>В сельской местности</item>
+        <item>Дом c электроотоплением</item>
+        <item>Фиксированная сумма</item>
+    </string-array>
+
+    <string-array name="ectro_switch">
+        <item>В городе</item>
+        <item>В сельской местности</item>
+        <item>Дом c электроотоплением</item>
+    </string-array>
+
+    <string-array name="hwater">
+        <item>Ваш тариф</item>
+        <item>Фиксированная сумма</item>
+    </string-array>
+
+    <string-array name="gas_switch">
+        <item>Для приготовления еды</item>
+        <item>Отопление или комплексное использование</item>
+        <item>Ваш тариф</item>
+        <item>Нет счетчика на газ</item>
+        <item>Фиксированная сумма</item>
+    </string-array>
+
+    <array name="oblast_name">
+        <item>Винницкая область</item>
+        <item>Волынская область</item>
+        <item>Днепропетровская область</item>
+        <item>Донецкая область</item>
+        <item>Житомирская область</item>
+        <item>Закарпатская область</item>
+        <item>Запорожская область</item>
+        <item>Ивано-Франковская область</item>
+        <item>Киевская область</item>
+        <item>Кировоградская область</item>
+        <item>Луганская область</item>
+        <item>Львовская область</item>
+        <item>Николаевская область</item>
+        <item>Одесская область</item>
+        <item>Полтавская область</item>
+        <item>Ровенская область</item>
+        <item>Сумская область</item>
+        <item>Тернопольская область</item>
+        <item>Харьковская область</item>
+        <item>Херсонская область</item>
+        <item>Хмельницкая область</item>
+        <item>Черкасская область</item>
+        <item>Черниговская область</item>
+        <item>Черновицкая область</item>
+        <item>город Киев</item>
+    </array>
+</resources>

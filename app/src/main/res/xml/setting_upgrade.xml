@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="preg_key_upgrade"
+    android:persistent="false"
+    android:title="@string/electro_tarif">
+
+    <PreferenceCategory
+        android:key="key_tarif_download"
+        android:title="@string/action_upgrade">
+        <ListPreference
+            android:defaultValue="1"
+            android:dialogTitle="@string/system_country1"
+            android:entries="@array/text_country"
+            android:entryValues="@array/text_country"
+            android:key="key_country"
+            android:summary="%s"
+            android:title="@string/system_country" />
+        <Preference
+            android:key="key_download"
+            android:title="@string/load" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="key_tarif_upgrade1"
+        android:title="@string/action_upgrade">
+        <Preference
+            android:key="key_electro"
+            android:title="@string/electro" />
+        <Preference
+            android:key="key_cWater"
+            android:title="@string/cWater" />
+        <Preference
+            android:key="key_hWater"
+            android:title="@string/hWater" />
+        <Preference
+            android:key="key_gas"
+            android:title="@string/gas" />
+
+    </PreferenceCategory>
+
+
+</PreferenceScreen>
