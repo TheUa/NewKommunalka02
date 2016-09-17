@@ -1,12 +1,13 @@
 package com.example.admin.newkommunalka02;
 
 import android.app.DatePickerDialog;
-import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -20,11 +21,12 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.TimePicker;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -34,7 +36,7 @@ import java.util.Date;
 public class TarifActivity extends AppCompatActivity {
 
     private TextView dateText;
-    private TextView timeText;
+    private TextView noteText;
     private EditText count;
     private DatabaseHelper databaseHelper;
     private RecyclerView recyclerView;
@@ -43,13 +45,18 @@ public class TarifActivity extends AppCompatActivity {
     private TextView toolbarText;
     private TextView saveText;
     private TextView backText;
+    private ImageView backImage;
+    private ImageView saveImage;
+    private ImageView noteImage;
 
     private Calendar dateAndTime = Calendar.getInstance();
 
     private SimpleDateFormat dateFormatter;
 
+    private ArrayList setArchiveDB;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tarif);
 
@@ -59,26 +66,20 @@ public class TarifActivity extends AppCompatActivity {
         toolbarView.setImageResource(R.drawable.electro);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-//        getSupportActionBar().setDisplayShowHomeEnabled(true);
-//        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
         toolbarText.setText(R.string.electro);
-//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                onBackPressed();
-//            }
-//        });
 
         setupWindowAnimations();
 
         databaseHelper = new DatabaseHelper(this);
 
         dateText = (TextView) findViewById(R.id.count_date);
-        timeText = (TextView) findViewById(R.id.time);
+        noteText = (TextView) findViewById(R.id.note);
         count = (EditText) findViewById(R.id.count);
         saveText = (TextView) findViewById(R.id.save_text);
         backText = (TextView) findViewById(R.id.back_text);
+        backImage = (ImageView) findViewById(R.id.back_image);
+        saveImage = (ImageView) findViewById(R.id.save_image);
+        noteImage = (ImageView) findViewById(R.id.count_note);
         count.requestFocus();
 
         recyclerView = (RecyclerView) findViewById(R.id.tarif_recycler);
@@ -88,30 +89,11 @@ public class TarifActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
 
-        final ArrayList setArchiveDB = getArchiveDB();
+        setArchiveDB = getArchiveDB();
         adapter = new RecyclerTarif(setArchiveDB);
         recyclerView.setAdapter(adapter);
 
-        backText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
-
-        dateText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setDate(view);
-            }
-        });
-        timeText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setTime(view);
-            }
-        });
-
+        clicker();
     }
 
     public void setDate(View v) {
@@ -123,41 +105,14 @@ public class TarifActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    // отображаем диалоговое окно для выбора времени
-    public void setTime(View v) {
-        new TimePickerDialog(TarifActivity.this, t,
-                dateAndTime.get(Calendar.HOUR_OF_DAY),
-                dateAndTime.get(Calendar.MINUTE), true)
-                .show();
-    }
-
     // установка начальных даты
     private void setInitialDate() {
 
         dateText.setText(DateUtils.formatDateTime(this,
                 dateAndTime.getTimeInMillis(),
                 DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR));
-//                        | DateUtils.FORMAT_SHOW_TIME));
-//        timeText.setText(DateUtils.FORMAT_SHOW_TIME);
 
     }
-
-    // установка начальных времени
-    private void setInitialTime() {
-
-        timeText.setText(DateUtils.formatDateTime(this,
-                dateAndTime.getTimeInMillis(), DateUtils.FORMAT_SHOW_TIME));
-
-    }
-
-    // установка обработчика выбора времени
-    TimePickerDialog.OnTimeSetListener t = new TimePickerDialog.OnTimeSetListener() {
-        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-            dateAndTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
-            dateAndTime.set(Calendar.MINUTE, minute);
-            setInitialTime();
-        }
-    };
 
     // установка обработчика выбора даты
     DatePickerDialog.OnDateSetListener d = new DatePickerDialog.OnDateSetListener() {
@@ -168,14 +123,6 @@ public class TarifActivity extends AppCompatActivity {
             setInitialDate();
         }
     };
-
-//    public static void ShowKeyboard(View pView) {
-//        pView.RequestFocus();
-//
-//        InputMethodManager inputMethodManager = MyApplication.GetSystemService(Context.InputMethodService) as InputMethodManager;
-//        inputMethodManager.ShowSoftInput(pView, ShowFlags.Forced);
-//        inputMethodManager.ToggleSoftInput(ShowFlags.Forced, HideSoftInputFlags.ImplicitOnly);
-//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -188,47 +135,7 @@ public class TarifActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch (id) {
             case R.id.action_setting:
-                if (!TextUtils.isEmpty(count.getText().toString())) {
-                    String date = (DateUtils.formatDateTime(this,
-                            dateAndTime.getTimeInMillis(),
-                            DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR));
-                    String time = (DateUtils.formatDateTime(this,
-                            dateAndTime.getTimeInMillis(), DateUtils.FORMAT_SHOW_TIME));
-                    if (dateText.getText().toString().equals(getText(R.string.to_day_test))) {
-
-                        if (timeText.getText().toString().equals(getText(R.string.to_time_test))) {
-
-                            databaseHelper.addArchiveItem(new ArchiveItem
-                                    (count.getText().toString(), date + " " + time, "", ""), databaseHelper.DATABASE_ELECTRO);
-                            adapter.notifyDataSetChanged();
-                            return true;
-                        }
-                        databaseHelper.addArchiveItem(new ArchiveItem
-                                (count.getText().toString(), date + " " + timeText.getText().toString(),
-                                        "", ""), databaseHelper.DATABASE_ELECTRO);
-                        Log.e("007", "дата");
-                        return true;
-                    }
-                    if (timeText.getText().toString().equals(getText(R.string.to_time_test))) {
-                        databaseHelper.addArchiveItem(new ArchiveItem
-                                (count.getText().toString(), dateText.getText().toString() + " " + time,
-                                        "", ""), databaseHelper.DATABASE_ELECTRO);
-                        return true;
-                    }
-                    databaseHelper.addArchiveItem(new ArchiveItem
-                            (count.getText().toString(), dateText.getText().toString() + " " +
-                                    timeText.getText().toString(),
-                                    "", ""), databaseHelper.DATABASE_ELECTRO);
-                } else {
-
-                    Snackbar snackbar = Snackbar.make(count, getText(R.string.count_start), Snackbar.LENGTH_LONG).setAction("Action", null);
-                    View sbView = snackbar.getView();
-                    TextView tv = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
-                    sbView.setBackgroundColor(ContextCompat.getColor(TarifActivity.this, R.color.colorPrimary));
-                    tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.snackbar_textsize));
-                    snackbar.show();
-                }
-
+                saveDB();
                 break;
         }
         return true;
@@ -254,7 +161,7 @@ public class TarifActivity extends AppCompatActivity {
                 archiveItem.setArchiveId(increm++);
                 archiveItem.setArchiveCount(cursor.getString(1));
                 archiveItem.setArchiveDate(cursor.getString(2));
-                archiveItem.setArchiveTime(cursor.getString(3));
+                archiveItem.setArchiveSum(cursor.getString(3));
                 archiveItem.setArchiveDescr(cursor.getString(4));
                 archiveList.add(0, archiveItem);
             } while (cursor.moveToNext());
@@ -262,6 +169,7 @@ public class TarifActivity extends AppCompatActivity {
         cursor.close();
         return archiveList;
     }
+
     private void setupWindowAnimations() {
         // Re-enter transition is executed when returning to this activity
 
@@ -273,6 +181,135 @@ public class TarifActivity extends AppCompatActivity {
             getWindow().setReenterTransition(slideTransition);
             getWindow().setExitTransition(slideTransition);
         }
+    }
+
+    private void alertDialogComment() {
+        AlertDialog alertDialog;
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.note);
+        builder.setIcon(R.drawable.note);
+        final EditText input = new EditText(this);
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT);
+        input.setLayoutParams(lp);
+        builder.setView(input); // uncomment this line
+        input.requestFocus();
+        builder.setPositiveButton(getString(R.string.on),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String inputText;
+                        inputText = input.getText().toString();
+                        noteText.setText(inputText);
+                    }
+                })
+                .setNegativeButton(getString(R.string.off),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+        alertDialog = builder.create();
+        alertDialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        alertDialog.show();
+    }
+
+    public void saveDB() {
+        if (!TextUtils.isEmpty(count.getText().toString())) {
+            String date = (DateUtils.formatDateTime(this,
+                    dateAndTime.getTimeInMillis(),
+                    DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR));
+            String note = noteText.getText().toString();
+            if (dateText.getText().toString().equals(getText(R.string.to_day_test))) {
+                if (noteText.getText().toString().equals(getText(R.string.note))) {
+                    databaseHelper.addArchiveItem(new ArchiveItem
+                            (count.getText().toString(), date, "", ""), databaseHelper.DATABASE_ELECTRO);
+                    setArchiveDB.clear();
+                    setArchiveDB = getArchiveDB();
+                    adapter.notifyDataSetChanged();
+                    return;
+                }
+                databaseHelper.addArchiveItem(new ArchiveItem
+                        (count.getText().toString(), date,
+                                "", note), databaseHelper.DATABASE_ELECTRO);
+                Log.e("007", "дата");
+                setArchiveDB.clear();
+                setArchiveDB = getArchiveDB();
+                adapter.notifyDataSetChanged();
+                return;
+            }
+            if (noteText.getText().toString().equals(getText(R.string.note))) {
+                databaseHelper.addArchiveItem(new ArchiveItem
+                        (count.getText().toString(), dateText.getText().toString(),
+                                "", ""), databaseHelper.DATABASE_ELECTRO);
+                setArchiveDB.clear();
+                setArchiveDB = getArchiveDB();
+                adapter.notifyDataSetChanged();
+                return;
+            }
+            databaseHelper.addArchiveItem(new ArchiveItem
+                    (count.getText().toString(), dateText.getText().toString(),
+                            "", note), databaseHelper.DATABASE_ELECTRO);
+            setArchiveDB.clear();
+            setArchiveDB = getArchiveDB();
+            adapter.notifyDataSetChanged();
+        } else {
+            Snackbar snackbar = Snackbar.make(count, getText(R.string.count_start), Snackbar.LENGTH_LONG).setAction("Action", null);
+            View sbView = snackbar.getView();
+            TextView tv = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+            sbView.setBackgroundColor(ContextCompat.getColor(TarifActivity.this, R.color.colorPrimary));
+            tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.snackbar_textsize));
+            snackbar.show();
+        }
+    }
+
+    public void clicker(){
+
+        backText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+        backImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
+        dateText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setDate(view);
+            }
+        });
+        noteText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialogComment();
+            }
+        });
+        noteImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialogComment();
+            }
+        });
+        saveText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveDB();
+            }
+        });
+        saveImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveDB();
+            }
+        });
     }
 }
 

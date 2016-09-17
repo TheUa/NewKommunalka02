@@ -45,9 +45,6 @@ public class SettingUpgrade extends PreferenceFragment {
             fileJsonTaskDownload = new FileJsonTaskDownload(getActivity());
             fileJsonTaskDownload.execute();
 
-
-//            MainActivity mainActivity = new MainActivity();
-//            mainActivity.new FileJsonTaskDownload().execute();
         }
         Preference myPref0 = findPreference("key_download");
         myPref0.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {

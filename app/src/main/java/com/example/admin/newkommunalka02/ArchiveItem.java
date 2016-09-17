@@ -7,7 +7,7 @@ public class ArchiveItem {
 
     private String archiveCount;
     private String archiveDate;
-    private String archiveTime;
+    private String archiveSum;
     private String archiveDescr;
     private int archiveId;
 
@@ -15,7 +15,7 @@ public class ArchiveItem {
         this.archiveId = i;
         this.archiveCount = s;
         this.archiveDate = string;
-        this.archiveTime = summ;
+        this.archiveSum = summ;
         this.archiveDescr = descr;
     }
     @Override
@@ -23,13 +23,13 @@ public class ArchiveItem {
         return this.archiveCount;
     }
     public String string() {
-        return this.archiveTime + "  -  " + this.archiveTime;
+        return this.archiveSum + "  -  " + this.archiveSum;
     }
 
     public ArchiveItem(String s, String string, String summ, String descr) {
         this.archiveCount = s;
         this.archiveDate = string;
-        this.archiveTime = summ;
+        this.archiveSum = summ;
         this.archiveDescr = descr;
     }
     public ArchiveItem() {
@@ -59,12 +59,12 @@ public class ArchiveItem {
         this.archiveDate = archiveDate;
     }
 
-    public String getArchiveTime() {
-        return archiveTime;
+    public String getArchiveSum() {
+        return archiveSum;
     }
 
-    public void setArchiveTime(String archiveTime) {
-        this.archiveTime = archiveTime;
+    public void setArchiveSum(String archiveSum) {
+        this.archiveSum = archiveSum;
     }
 
     public String getArchiveDescr() {

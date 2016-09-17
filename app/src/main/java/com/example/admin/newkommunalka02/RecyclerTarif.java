@@ -51,7 +51,7 @@ private List<ArchiveItem> archiveItems = new ArrayList<>();
     public void onBindViewHolder(RecyclerViewHolder viewHolder, int i) {
         viewHolder.archive_count.setText(archiveItems.get(i).getArchiveCount());
         viewHolder.archive_date.setText(archiveItems.get(i).getArchiveDate());
-        viewHolder.archive_summ.setText(archiveItems.get(i).getArchiveTime());
+        viewHolder.archive_summ.setText(archiveItems.get(i).getArchiveSum());
         viewHolder.archive_descr.setText(archiveItems.get(i).getArchiveDescr());
         viewHolder.archive_id.setText(Integer.toString(archiveItems.get(i).getArchiveId()));
     }
@@ -59,6 +59,8 @@ private List<ArchiveItem> archiveItems = new ArrayList<>();
     public int getItemCount() {
         return archiveItems == null ? 0 : archiveItems.size();
     }
+
+
 }
 
 

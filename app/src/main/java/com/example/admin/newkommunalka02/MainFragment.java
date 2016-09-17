@@ -112,7 +112,7 @@ public class MainFragment extends android.app.Fragment {
 //                        .setCustomAnimations(
 //                                R.anim.card_flip_right_in, R.anim.card_flip_right_out,
 //                                R.anim.card_flip_left_in, R.anim.card_flip_left_out)
-                                .replace(R.id.content_frame, new SettingUpgrade())
+                                .replace(R.id.content_frame, new AddCountFragment())
                                 .addToBackStack(null)
                                 .commit();
                         break;

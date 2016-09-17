@@ -2,7 +2,7 @@
     <string name="app_name">NewKommunalka02</string>
 
     <string name="count">Счетчики</string>
-    <string name="other_count">Добавить</string>
+    <string name="other_count">Прочее</string>
     <string name="archive">Архив</string>
     <string name="graphics">Графики</string>
     <string name="remember">Напоминания</string>
@@ -19,6 +19,9 @@
     <string name="system_help">Помощь</string>
     <string name="oblast">Выберете область</string>
     <string name="load">Загрузить</string>
+    <string name="on">Добавить</string>
+    <string name="off">Отмена</string>
+    <string name="add_count">Добавить счетчик</string>
 
 
     <string name="action_settings">Настройки</string>

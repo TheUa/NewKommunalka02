@@ -25,19 +25,19 @@ public class DatabaseHelper extends SQLiteOpenHelper implements BaseColumns {
     public static final String COLUMN_ID = BaseColumns._ID;
     public static final String COLUMN_COUNT = "archive_count";
     public static final String COLUMN_DATE = "archive_date";
-    public static final String COLUMN_TIME = "archive_time";
+    public static final String ARCHIVE_SUM = "archive_sum";
     public static final String COLUMN_DESCRIPTION = "archive_description";
 
     private static final String DATABASE_CREATE_SCRIPT = "create table "
             + DATABASE_TABLE + " (" + BaseColumns._ID
             + " integer primary key autoincrement, " + COLUMN_COUNT
-            + " integer, " + COLUMN_DATE + " text not null, " + COLUMN_TIME
+            + " integer, " + COLUMN_DATE + " text not null, " + ARCHIVE_SUM
             + " text not null, " + COLUMN_DESCRIPTION + " text not null);";
 
     private static final String DATABASE_CREATE_ELECTRO = "create table "
             + DATABASE_ELECTRO + " (" + BaseColumns._ID
             + " integer primary key autoincrement, " + COLUMN_COUNT
-            + " integer, " + COLUMN_DATE + " text not null, " + COLUMN_TIME
+            + " integer, " + COLUMN_DATE + " text not null, " + ARCHIVE_SUM
             + " text not null, " + COLUMN_DESCRIPTION + " text not null);";
 
 
@@ -80,7 +80,7 @@ public class DatabaseHelper extends SQLiteOpenHelper implements BaseColumns {
         ContentValues values = new ContentValues();
         values.put(COLUMN_COUNT, archiveItem.getArchiveCount());
         values.put(COLUMN_DATE, archiveItem.getArchiveDate());
-        values.put(COLUMN_TIME, archiveItem.getArchiveTime());
+        values.put(ARCHIVE_SUM, archiveItem.getArchiveSum());
         values.put(COLUMN_DESCRIPTION, archiveItem.getArchiveDescr());
 
         // Вставляем строку в таблицу
@@ -93,7 +93,7 @@ public class DatabaseHelper extends SQLiteOpenHelper implements BaseColumns {
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(DATABASE_TABLE, new String[] { COLUMN_ID,
-                        COLUMN_COUNT, COLUMN_DATE, COLUMN_TIME, COLUMN_DESCRIPTION }, COLUMN_ID + "=?",
+                        COLUMN_COUNT, COLUMN_DATE, ARCHIVE_SUM, COLUMN_DESCRIPTION }, COLUMN_ID + "=?",
                 new String[] { String.valueOf(id) }, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
@@ -119,7 +119,7 @@ public class DatabaseHelper extends SQLiteOpenHelper implements BaseColumns {
                 archiveItem.setArchiveId(Integer.parseInt(cursor.getString(0)));
                 archiveItem.setArchiveCount(cursor.getString(1));
                 archiveItem.setArchiveDate(cursor.getString(2));
-                archiveItem.setArchiveTime(cursor.getString(3));
+                archiveItem.setArchiveSum(cursor.getString(3));
                 archiveItem.setArchiveDescr(cursor.getString(4));
                 contactList.add(archiveItem);
             } while (cursor.moveToNext());
@@ -147,7 +147,7 @@ public class DatabaseHelper extends SQLiteOpenHelper implements BaseColumns {
         ContentValues values = new ContentValues();
         values.put(COLUMN_COUNT, archiveItem.getArchiveCount());
         values.put(COLUMN_DATE, archiveItem.getArchiveDate());
-        values.put(COLUMN_TIME, archiveItem.getArchiveTime());
+        values.put(ARCHIVE_SUM, archiveItem.getArchiveSum());
         values.put(COLUMN_DESCRIPTION, archiveItem.getArchiveDescr());
 
         // обновляем строку
