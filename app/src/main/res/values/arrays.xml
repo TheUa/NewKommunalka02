@@ -44,14 +44,6 @@
         <item>Шир, Торба-на-Круче</item>
     </string-array>
 
-    <string-array name="dayofweek">
-        <item>Ваш тариф</item>
-        <item>В городе</item>
-        <item>В сельской местности</item>
-        <item>Дом c электроотоплением</item>
-        <item>Фиксированная сумма</item>
-    </string-array>
-
     <string-array name="ectro_switch">
         <item>В городе</item>
         <item>В сельской местности</item>
@@ -66,9 +58,7 @@
     <string-array name="gas_switch">
         <item>Для приготовления еды</item>
         <item>Отопление или комплексное использование</item>
-        <item>Ваш тариф</item>
         <item>Нет счетчика на газ</item>
-        <item>Фиксированная сумма</item>
     </string-array>
 
     <array name="oblast_name">

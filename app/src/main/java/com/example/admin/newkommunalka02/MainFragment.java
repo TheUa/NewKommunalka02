@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SnapHelper;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -29,6 +31,8 @@ public class MainFragment extends android.app.Fragment {
     private RecyclerView otherRecyclerView;
     private RecyclerView archiveRecyclerView;
     private RecyclerView.Adapter adapter;
+    private SnapHelper snapHelper;
+    private Object object;
 
 
     @Override
@@ -53,9 +57,6 @@ public class MainFragment extends android.app.Fragment {
         setHasOptionsMenu(true);
 
 
-
-
-
         recyclerView = (RecyclerView) rootView.findViewById(R.id.main_recycler);
         otherRecyclerView = (RecyclerView) rootView.findViewById(R.id.other_recycler);
         archiveRecyclerView = (RecyclerView) rootView.findViewById(R.id.archive_recycler);
@@ -64,16 +65,22 @@ public class MainFragment extends android.app.Fragment {
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(linearLayoutManager);
+        snapHelper = new LinearSnapHelper();
+        snapHelper.attachToRecyclerView(recyclerView);
         recyclerView.setHasFixedSize(true);
 
         final LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getActivity());
         linearLayoutManager1.setOrientation(LinearLayoutManager.HORIZONTAL);
         otherRecyclerView.setLayoutManager(linearLayoutManager1);
+        snapHelper = new LinearSnapHelper();
+        snapHelper.attachToRecyclerView(otherRecyclerView);
         otherRecyclerView.setHasFixedSize(false);
 
         final LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(getActivity());
         linearLayoutManager2.setOrientation(LinearLayoutManager.HORIZONTAL);
         archiveRecyclerView.setLayoutManager(linearLayoutManager2);
+        snapHelper = new LinearSnapHelper();
+        snapHelper.attachToRecyclerView(archiveRecyclerView);
         archiveRecyclerView.setHasFixedSize(false);
 
         final ArrayList setNewItem = getNewItem();
@@ -83,6 +90,16 @@ public class MainFragment extends android.app.Fragment {
 
             @Override
             public void onClick(View view, int position) {
+
+                object = setNewItem.get(position);
+                NewsItem newsItem = (NewsItem) object;
+                if (newsItem.getHeadline().equals(getString(R.string.add))) {
+
+                    getFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.content_frame, new SettingAddCount())
+                            .addToBackStack(null)
+                            .commit();                }
 
                 switch (position) {
                     case 0:
@@ -208,6 +225,11 @@ public class MainFragment extends android.app.Fragment {
         newsData = new NewsItem();
         newsData.setHeadline(getString(R.string.heating));
         newsData.setImageUrl(R.drawable.heating);
+        results.add(newsData);
+
+        newsData = new NewsItem();
+        newsData.setHeadline(getString(R.string.add));
+        newsData.setImageUrl(R.drawable.add);
         results.add(newsData);
 
         return results;

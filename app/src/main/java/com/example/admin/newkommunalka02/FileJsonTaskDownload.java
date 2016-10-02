@@ -411,26 +411,26 @@ public class FileJsonTaskDownload extends AsyncTask<Void, Void, Void> {
             SharedPreferences.Editor editor = mSettings.edit();
             editor.putString("test", "test");
             editor.putString("key_porog_electro_gorod1", porog_electro_1 + " " + mContext.getText(R.string.kwt));
-//            editor.putString("key_porog_electro_gorod2", porog_electro_2 + " " + getText(R.string.kwt));
-//            editor.putString("key_tarif_electro_gorod", electro_1 + " " + getText(R.string.valute));
-//            editor.putString("key_tarif_electro_gorod1", electro_2 + " " + getText(R.string.valute));
-//            editor.putString("key_tarif_electro_gorod2", electro_3 + " " + getText(R.string.valute));
-//
-//            editor.putString("key_porog_electro_selo1", porog_electro_selo_1 + " " + getText(R.string.kwt));
-//            editor.putString("key_porog_electro_selo2", porog_electro_selo_2 + " " + getText(R.string.kwt));
-//            editor.putString("key_tarif_electro_selo", electro_selo_1 + " " + getText(R.string.valute));
-//            editor.putString("key_tarif_electro_selo1", electro_selo_2 + " " + getText(R.string.valute));
-//            editor.putString("key_tarif_electro_selo2", electro_selo_3 + " " + getText(R.string.valute));
-//
-//            editor.putString("key_porog_electro_pgt1", porog_electro_pgt_1 + " " + getText(R.string.kwt));
-//            editor.putString("key_porog_electro_pgt2", porog_electro_pgt_2 + " " + getText(R.string.kwt));
-//            editor.putString("key_tarif_electro_pgt", electro_pgt_1 + " " + getText(R.string.valute));
-//            editor.putString("key_tarif_electro_pgt1", electro_pgt_2 + " " + getText(R.string.valute));
-//            editor.putString("key_tarif_electro_pgt2", electro_pgt_3 + " " + getText(R.string.valute));
-//
-//            editor.putString("key_gas1", gas1 + " " + getText(R.string.valute));
-//            editor.putString("key_gas_porog", porog_gas1 + " " + getText(R.string.m3));
-//            editor.putString("key_gas2", gas2 + " " + getText(R.string.valute));
+            editor.putString("key_porog_electro_gorod2", porog_electro_2 + " " + mContext.getText(R.string.kwt));
+            editor.putString("key_tarif_electro_gorod", electro_1 + " " + mContext.getText(R.string.valute));
+            editor.putString("key_tarif_electro_gorod1", electro_2 + " " + mContext.getText(R.string.valute));
+            editor.putString("key_tarif_electro_gorod2", electro_3 + " " + mContext.getText(R.string.valute));
+
+            editor.putString("key_porog_electro_selo1", porog_electro_selo_1 + " " + mContext.getText(R.string.kwt));
+            editor.putString("key_porog_electro_selo2", porog_electro_selo_2 + " " + mContext.getText(R.string.kwt));
+            editor.putString("key_tarif_electro_selo", electro_selo_1 + " " + mContext.getText(R.string.valute));
+            editor.putString("key_tarif_electro_selo1", electro_selo_2 + " " + mContext.getText(R.string.valute));
+            editor.putString("key_tarif_electro_selo2", electro_selo_3 + " " + mContext.getText(R.string.valute));
+
+            editor.putString("key_porog_electro_pgt1", porog_electro_pgt_1 + " " + mContext.getText(R.string.kwt));
+            editor.putString("key_porog_electro_pgt2", porog_electro_pgt_2 + " " + mContext.getText(R.string.kwt));
+            editor.putString("key_tarif_electro_pgt", electro_pgt_1 + " " + mContext.getText(R.string.valute));
+            editor.putString("key_tarif_electro_pgt1", electro_pgt_2 + " " + mContext.getText(R.string.valute));
+            editor.putString("key_tarif_electro_pgt2", electro_pgt_3 + " " + mContext.getText(R.string.valute));
+
+            editor.putString("key_gas1", gas1 + " " + mContext.getText(R.string.valute));
+            editor.putString("key_gas_porog", porog_gas1 + " " + mContext.getText(R.string.m3));
+            editor.putString("key_gas2", gas2 + " " + mContext.getText(R.string.valute));
             editor.putInt("test_download", 1);
             editor.apply();
 

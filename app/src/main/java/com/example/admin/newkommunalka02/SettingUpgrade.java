@@ -36,7 +36,7 @@ public class SettingUpgrade extends PreferenceFragment {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
         textView.setText(R.string.action_settings);
-        spinner.setVisibility(View.INVISIBLE);
+        spinner.setVisibility(View.GONE);
         setHasOptionsMenu(true);
 
         SharedPreferences mSettings = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -57,58 +57,58 @@ public class SettingUpgrade extends PreferenceFragment {
             }
         });
 
-        Preference myPref = findPreference("key_electro");
-        myPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            public boolean onPreferenceClick(Preference preference) {
-                //open browser or intent here
-//                getFragmentManager()
-//                        .beginTransaction()
-////                        .setCustomAnimations(
-////                                R.anim.card_flip_right_in, R.anim.card_flip_right_out,
-////                                R.anim.card_flip_left_in, R.anim.card_flip_left_out)
-//                        .replace(R.id.content_frame, new SettingElectro())
-//                        .addToBackStack(null)
-//                        .commit();
-                return false;
-            }
-        });
-        Preference myPref1 = findPreference("key_cWater");
-        myPref1.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            public boolean onPreferenceClick(Preference preference) {
-                //open browser or intent here
-//                getFragmentManager()
-//                        .beginTransaction()
-////                        .setCustomAnimations(
-////                                R.anim.card_flip_right_in, R.anim.card_flip_right_out,
-////                                R.anim.card_flip_left_in, R.anim.card_flip_left_out)
-//                        .replace(R.id.content_frame, new SettingCWater())
-//                        .addToBackStack(null)
-//                        .commit();
-                return false;
-            }
-        });
-        Preference myPref2 = findPreference("key_hWater");
-        myPref2.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            public boolean onPreferenceClick(Preference preference) {
-                //open browser or intent here
-//                getFragmentManager()
-//                        .beginTransaction()
-////                        .setCustomAnimations(
-////                                R.anim.card_flip_right_in, R.anim.card_flip_right_out,
-////                                R.anim.card_flip_left_in, R.anim.card_flip_left_out)
-//                        .replace(R.id.content_frame, new SettingMyHWater())
-//                        .addToBackStack(null)
-//                        .commit();
-                return false;
-            }
-        });
-        Preference myPref3 = findPreference("key_gas");
-        myPref3.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            public boolean onPreferenceClick(Preference preference) {
-                return false;
-            }
-        });
-
+//        Preference myPref = findPreference("key_electro");
+//        myPref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+//            public boolean onPreferenceClick(Preference preference) {
+//                //open browser or intent here
+////                getFragmentManager()
+////                        .beginTransaction()
+//////                        .setCustomAnimations(
+//////                                R.anim.card_flip_right_in, R.anim.card_flip_right_out,
+//////                                R.anim.card_flip_left_in, R.anim.card_flip_left_out)
+////                        .replace(R.id.content_frame, new SettingElectro())
+////                        .addToBackStack(null)
+////                        .commit();
+//                return false;
+//            }
+//        });
+//        Preference myPref1 = findPreference("key_cWater");
+//        myPref1.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+//            public boolean onPreferenceClick(Preference preference) {
+//                //open browser or intent here
+////                getFragmentManager()
+////                        .beginTransaction()
+//////                        .setCustomAnimations(
+//////                                R.anim.card_flip_right_in, R.anim.card_flip_right_out,
+//////                                R.anim.card_flip_left_in, R.anim.card_flip_left_out)
+////                        .replace(R.id.content_frame, new SettingCWater())
+////                        .addToBackStack(null)
+////                        .commit();
+//                return false;
+//            }
+//        });
+//        Preference myPref2 = findPreference("key_hWater");
+//        myPref2.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+//            public boolean onPreferenceClick(Preference preference) {
+//                //open browser or intent here
+////                getFragmentManager()
+////                        .beginTransaction()
+//////                        .setCustomAnimations(
+//////                                R.anim.card_flip_right_in, R.anim.card_flip_right_out,
+//////                                R.anim.card_flip_left_in, R.anim.card_flip_left_out)
+////                        .replace(R.id.content_frame, new SettingMyHWater())
+////                        .addToBackStack(null)
+////                        .commit();
+//                return false;
+//            }
+//        });
+//        Preference myPref3 = findPreference("key_gas");
+//        myPref3.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+//            public boolean onPreferenceClick(Preference preference) {
+//                return false;
+//            }
+//        });
+//
     }
 
     @Override
