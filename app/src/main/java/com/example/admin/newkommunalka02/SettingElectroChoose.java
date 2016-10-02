@@ -39,6 +39,7 @@ public class SettingElectroChoose extends PreferenceFragment implements SharedPr
         textView.setText(R.string.action_settings);
         spinner.setVisibility(View.GONE);
         setHasOptionsMenu(true);
+
         Preference choose = findPreference("pref_key_electro_choose");
         Preference input = findPreference("pref_key_electro_input");
 
