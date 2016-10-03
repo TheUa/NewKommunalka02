@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="preg_key_my_electro"
+    android:persistent="false"
+    android:title="@string/electro_tarif">
+
+    <PreferenceCategory
+        android:key="pref_key_tarif_el"
+        android:title="@string/electro_tarif">
+
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/ectro_switch"
+            android:entryValues="@array/ectro_switch"
+            android:key="key_electro_switch"
+            android:summary="%s"
+            android:title="@string/system_categories" />
+
+        <EditTextPreference
+            android:enabled="false"
+            android:inputType="numberDecimal"
+            android:key="key_tarif_electro"
+            android:title="@string/tarif_porog" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="pref_key_tarif_el1"
+        android:title="@string/porog">
+
+        <EditTextPreference
+            android:dependency="key_tarif_electro"
+            android:inputType="numberDecimal"
+            android:key="key_porog_electro1"
+            android:title="@string/porog" />
+
+        <EditTextPreference
+            android:dependency="key_porog_electro1"
+            android:inputType="numberDecimal"
+            android:key="key_tarif_electro1"
+            android:title="@string/tarif_porog1" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="pref_key_tarif_el2"
+        android:title="@string/porog1">
+
+        <EditTextPreference
+            android:dependency="key_tarif_electro1"
+            android:inputType="numberDecimal"
+            android:key="key_porog_electro2"
+            android:title="@string/porog1" />
+
+        <EditTextPreference
+            android:dependency="key_porog_electro2"
+            android:inputType="numberDecimal"
+            android:key="key_tarif_electro2"
+            android:title="@string/tarif_porog2" />
+    </PreferenceCategory>
+</PreferenceScreen>

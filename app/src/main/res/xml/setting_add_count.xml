@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:key="key_tarif_upgrade1"
+        android:title="@string/add_count">
+        <Preference
+            android:key="key_electro"
+            android:title="@string/electro" />
+        <Preference
+            android:key="key_cWater"
+            android:title="@string/cWater" />
+        <Preference
+            android:key="key_hWater"
+            android:title="@string/hWater" />
+        <Preference
+            android:key="key_gas"
+            android:title="@string/gas" />
+        <Preference
+            android:key="key_heating"
+            android:title="@string/heating" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

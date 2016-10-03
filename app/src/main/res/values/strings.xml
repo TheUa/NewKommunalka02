@@ -2,7 +2,7 @@
     <string name="app_name">NewKommunalka02</string>
 
     <string name="count">Счетчики</string>
-    <string name="other_count">Добавить</string>
+    <string name="other_count">Прочее</string>
     <string name="archive">Архив</string>
     <string name="graphics">Графики</string>
     <string name="remember">Напоминания</string>
@@ -19,6 +19,10 @@
     <string name="system_help">Помощь</string>
     <string name="oblast">Выберете область</string>
     <string name="load">Загрузить</string>
+    <string name="on">Добавить</string>
+    <string name="off">Отмена</string>
+    <string name="add_count">Добавить счетчик</string>
+    <string name="add">Добавить</string>
 
 
     <string name="action_settings">Настройки</string>
@@ -27,6 +31,7 @@
     <string name="save">Сохранить</string>
     <string name="back">Вернуться</string>
 
+    <string name="name">Введите название счетчика</string>
     <string name="electro">Электроэнергия</string>
     <string name="electro_tarif">Тарифы на электроэнергию</string>
     <string name="cWater">Холодная вода</string>
@@ -50,6 +55,20 @@
     <string name="other">Прочее</string>
     <string name="clear">Очистить</string>
 
+    <string name="porog">Первый порог (кВт)</string>
+    <string name="porog_gas">Первый порог (м.куб.)</string>
+    <string name="porog1">Второй порог (кВт)</string>
+    <string name="porog_gas1">Второй порог (м.куб)</string>
+    <string name="porog2">Третий порог (кВт)</string>
+    <string name="tarif_porog">Осовной тариф (грн)</string>
+    <string name="tarif_porog1">Тариф после первого порога (грн)</string>
+    <string name="tarif_porog2">Тариф после второго порога (грн)</string>
+    <string name="for_pay">Введите сумму для оплаты (грн)</string>
+
+    <string name="choose_count">Выбирете счетчик</string>
+    <string name="load_tarif">Сохраненные тарифы</string>
+    <string name="save_tarif">Готовые тарифы</string>
+    <string name="input_tarif">Ввести тарифы самостоятельно</string>
     <string name="note">Добавить комментарий</string>
     <string name="count_start">Введите показания счетчика</string>
     <string name="water_pay">грн/м(куб.)</string>
@@ -73,12 +92,13 @@
     <string name="tarif">Изменить тариф</string>
     <string name="count_input">Ввести тариф самстоятельно</string>
     <string name="count_input1">Ввести тариф</string>
-    <string name="tarif_input1">Введите \nпервый тариф</string>
-    <string name="tarif_input2">Введите \nвторой тариф</string>
-    <string name="tarif_input3">Введите \nтретий тариф</string>
-    <string name="step">Введите \nпервый порог</string>
-    <string name="step1">Введите \nвторой порог</string>
-    <string name="step2">Введите \nтретий порог</string>
+    <string name="tarif_input1">Введите тариф</string>
+    <string name="tarif_input2">Введите тариф после первого порога</string>
+    <string name="tarif_input3">Введите тариф после второго порога</string>
+    <string name="add_step">Добавить порог</string>
+    <string name="step">Введите первый порог</string>
+    <string name="step1">Введите второй порог</string>
+    <string name="step2">Введите третий порог</string>
     <string name="archive_button">Архив платежей</string>
     <string name="m3">м. куб.</string>
     <string name="kwt">кВт</string>

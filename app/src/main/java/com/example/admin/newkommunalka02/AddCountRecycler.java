@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -11,25 +12,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Admin on 20.08.2016.
+ * Created by Admin on 19.09.2016.
  */
-public class RecyclerViewAdapterHorizontal extends RecyclerView.Adapter<RecyclerViewAdapterHorizontal.RecyclerViewHolder> {
+public class AddCountRecycler extends RecyclerView.Adapter<AddCountRecycler.RecyclerViewHolder> {
 
 
     public static class RecyclerViewHolder extends RecyclerView.ViewHolder {
 
-        TextView vertical_headline;
-        ImageView image;
+        EditText tarif;
+        EditText step;
         RecyclerViewHolder(View itemView) {
             super(itemView);
-            vertical_headline = (TextView) itemView.findViewById(R.id.counter_text);
-            image = (ImageView) itemView.findViewById(R.id.counter_main);
+            tarif = (EditText) itemView.findViewById(R.id.recycler_tarif);
+            step = (EditText) itemView.findViewById(R.id.recycler_step);
         }
     }
     private List<NewsItem> newsItems = new ArrayList<>();
 
-
-    public RecyclerViewAdapterHorizontal(List<NewsItem> newsItems) {
+    public AddCountRecycler(List<NewsItem> newsItems) {
         this.newsItems = newsItems;
     }
 
@@ -40,7 +40,7 @@ public class RecyclerViewAdapterHorizontal extends RecyclerView.Adapter<Recycler
 
     @Override
     public RecyclerViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.main_recycler_horizontal_item, viewGroup, false);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.add_count_recycler, viewGroup, false);
         return new RecyclerViewHolder(v);
     }
 
@@ -51,8 +51,8 @@ public class RecyclerViewAdapterHorizontal extends RecyclerView.Adapter<Recycler
 
     @Override
     public void onBindViewHolder(RecyclerViewHolder viewHolder, int i) {
-        viewHolder.vertical_headline.setText(newsItems.get(i).getHeadline());
-        viewHolder.image.setImageResource(newsItems.get(i).getImageUrl());
+        viewHolder.tarif.setHint(newsItems.get(i).getHeadline());
+        viewHolder.step.setHint(newsItems.get(i).getDate());
     }
     @Override
     public int getItemCount() {

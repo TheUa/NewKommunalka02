@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:key="preg_key_tarif_electro"
+    android:persistent="false"
+    android:title="@string/electro_tarif">
+
+    <PreferenceCategory
+        android:key="pref_key_tarif_el"
+        android:title="@string/electro_tarif">
+
+        <EditTextPreference
+            android:key="pref_key_elector_name"
+            android:title="@string/name"/>
+
+        <Preference
+            android:key="pref_key_electro_choose"
+            android:title="@string/save_tarif"/>
+
+        <Preference
+            android:key="pref_key_electro_input"
+            android:title="@string/input_tarif"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
