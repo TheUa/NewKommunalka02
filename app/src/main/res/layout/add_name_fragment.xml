@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp">
+
+            <TextView
+                android:id="@+id/electro_add"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:textSize="17sp"
+                android:text="@string/electro"/>
+
+            <TextView
+                android:id="@+id/cWater_add"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:text="@string/cWater"
+                android:textSize="17sp"
+                android:layout_below="@+id/electro_add"/>
+
+            <TextView
+                android:id="@+id/hWater_add"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:text="@string/hWater"
+                android:textSize="17sp"
+                android:layout_below="@+id/cWater_add"/>
+
+            <TextView
+                android:id="@+id/gas_add"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:text="@string/gas"
+                android:textSize="17sp"
+                android:layout_below="@+id/hWater_add"/>
+
+            <TextView
+                android:id="@+id/heating_add"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:text="@string/heating"
+                android:textSize="17sp"
+                android:layout_below="@+id/gas_add"/>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>
